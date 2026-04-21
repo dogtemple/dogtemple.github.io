@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>商品</h2>
+
+<div>
+  <p>平安符 - $100</p>
+  <button onclick="add('平安符',100)">加入購物車</button>
+</div>
+
+<div>
+  <p>香火包 - $200</p>
+  <button onclick="add('香火包',200)">加入購物車</button>
+</div>
+
+<a href="checkout.html">前往結帳</a>
+
+<script>
+let cart = [];
+
+function add(name, price){
+  cart.push({name, price});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("已加入購物車");
+}
+</script>
+
+</body>
+</html>
