@@ -2,16 +2,16 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>抽籤</title>
+<title>伏仙宮抽籤</title>
 </head>
 
 <body>
 
 <h1>🎋 伏仙宮抽籤</h1>
 
-<button onclick="login()">Google登入</button><br><br>
+<button id="loginBtn">Google登入</button><br><br>
 
-<button onclick="draw()">開始抽籤</button>
+<button id="drawBtn">開始抽籤</button>
 
 <div id="result"></div>
 
@@ -37,8 +37,10 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// 🔥 登入
-window.login = function(){
+// 🔥 等畫面載入後再綁事件（這是關鍵）
+document.getElementById("loginBtn").addEventListener("click", function(){
+  alert("按鈕有動"); // 測試用
+
   const provider = new firebase.auth.GoogleAuthProvider();
   auth.signInWithPopup(provider)
     .then(() => {
@@ -47,10 +49,10 @@ window.login = function(){
     .catch((error) => {
       alert("登入失敗：" + error.message);
     });
-};
+});
 
-// 🔥 抽籤（目前先簡單版）
-window.draw = function(){
+// 🔥 抽籤
+document.getElementById("drawBtn").addEventListener("click", function(){
 
   if(!auth.currentUser){
     alert("請先登入 🙏");
@@ -62,7 +64,7 @@ window.draw = function(){
   document.getElementById("result").innerHTML = 
     "<h2>第 " + num + " 籤</h2>" +
     "<img src='images/" + num + ".jpg' width='300'>";
-};
+});
 </script>
 
 </body>
