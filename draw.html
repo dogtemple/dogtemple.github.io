@@ -1,17 +1,21 @@
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAJ_Ur8xuEk-8KGg2TbcadatJmvY8lp4U",
+  authDomain: "fuxian-temple.firebaseapp.com",
+  projectId: "fuxian-temple",
+  storageBucket: "fuxian-temple.appspot.com",
+  messagingSenderId: "853469738414",
+  appId: "1:853469738414:web:cf42ede04baeeb8bb9043f",
+  measurementId: "G-Q2C48LJ5Z3"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+// 測試登入
 document.getElementById("loginBtn").addEventListener("click", function(){
-
-  alert("按鈕有動"); // 👉 測試1
-
   const provider = new firebase.auth.GoogleAuthProvider();
-
-  auth.signInWithPopup(provider)
-    .then(() => {
-      alert("登入成功 🙏");
-    })
-    .catch((error) => {
-      alert("錯誤：" + error.code); // 👉 把錯誤碼顯示出來
-    });
-
+  auth.signInWithPopup(provider);
 });
 </script>
