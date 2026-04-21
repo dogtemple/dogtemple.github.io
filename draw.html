@@ -15,20 +15,21 @@
 
 <div id="result"></div>
 
-<!-- Firebase（一定要這三個） -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-// ✅ Firebase 正確設定（已修正）
+// ✅ Firebase 正確設定（已全部修好）
 const firebaseConfig = {
   apiKey: "AIzaSyAJ_Ur8xuEk-8KGg2TbcadatJmvY8lp4U",
   authDomain: "fuxian-temple.firebaseapp.com",
   projectId: "fuxian-temple",
-  storageBucket: "fuxian-temple.appspot.com", // 🔥 修正這裡
+  storageBucket: "fuxian-temple.appspot.com",
   messagingSenderId: "853469738414",
-  appId: "1:853469738414:web:cf42ede04baeeb8bb9043f"
+  appId: "1:853469738414:web:cf42ede04baeeb8bb9043f",
+  measurementId: "G-Q2C48LJ5Z3"
 };
 
 // 初始化
@@ -37,7 +38,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// 🔥 登入按鈕
+// 🔥 登入功能
 document.getElementById("loginBtn").addEventListener("click", function(){
 
   const provider = new firebase.auth.GoogleAuthProvider();
