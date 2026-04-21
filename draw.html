@@ -7,9 +7,8 @@
 
 <body>
 
-<h1>🎋 抽籤</h1>
+<h1>🎋 伏仙宮抽籤</h1>
 
-<!-- 👉 登入先放上面（使用體驗好） -->
 <button onclick="login()">Google登入</button><br><br>
 
 <button onclick="draw()">開始抽籤</button>
@@ -22,7 +21,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-// 🔥 Firebase設定
+// Firebase設定
 const firebaseConfig = {
   apiKey: "AIzaSyAJ_Ur8xuEk-8KGg2TbcadatJmvY8lp4U",
   authDomain: "fuxian-temple.firebaseapp.com",
@@ -38,20 +37,32 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// ✅ 登入
-function login(){
+// 🔥 登入
+window.login = function(){
   const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider);
-}
+  auth.signInWithPopup(provider)
+    .then(() => {
+      alert("登入成功 🙏");
+    })
+    .catch((error) => {
+      alert("登入失敗：" + error.message);
+    });
+};
 
-// ✅ 抽籤（先保留簡單版）
-function draw(){
+// 🔥 抽籤（目前先簡單版）
+window.draw = function(){
+
+  if(!auth.currentUser){
+    alert("請先登入 🙏");
+    return;
+  }
+
   const num = Math.floor(Math.random() * 49) + 1;
 
   document.getElementById("result").innerHTML = 
     "<h2>第 " + num + " 籤</h2>" +
     "<img src='images/" + num + ".jpg' width='300'>";
-}
+};
 </script>
 
 </body>
