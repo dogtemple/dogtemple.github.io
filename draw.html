@@ -7,65 +7,14 @@
 
 <body>
 
-<h1>🎋 伏仙宮抽籤</h1>
+<h1>🎋 伏仙宮抽籤（測試版）</h1>
 
-<button id="loginBtn">Google登入</button><br><br>
-<button id="drawBtn">開始抽籤</button>
-
-<div id="result"></div>
-
-<!-- 🔥 一定要有這三個 -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<button onclick="test()">測試按鈕</button>
 
 <script>
-// 🔥 Firebase設定
-const firebaseConfig = {
-  apiKey: "AIzaSyAJ_Ur8xuEk-8KGg2TbcadatJmvY8lp4U",
-  authDomain: "fuxian-temple.firebaseapp.com",
-  projectId: "fuxian-temple",
-  storageBucket: "fuxian-temple.appspot.com",
-  messagingSenderId: "853469738414",
-  appId: "1:853469738414:web:cf42ede04baeeb8bb9043f"
-};
-
-// 初始化
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-
-// 🔥 等畫面載入後再綁按鈕（重點）
-window.onload = function(){
-
-  document.getElementById("loginBtn").onclick = function(){
-
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    auth.signInWithPopup(provider)
-      .then(() => {
-        alert("登入成功 🙏");
-      })
-      .catch((error) => {
-        alert("錯誤：" + error.message);
-      });
-  };
-
-  document.getElementById("drawBtn").onclick = function(){
-
-    if(!auth.currentUser){
-      alert("請先登入 🙏");
-      return;
-    }
-
-    const num = Math.floor(Math.random() * 49) + 1;
-
-    document.getElementById("result").innerHTML =
-      "<h2>第 " + num + " 籤</h2>" +
-      "<img src='images/" + num + ".jpg' width='300'>";
-  };
-
-};
+function test(){
+  alert("網站正常 👍");
+}
 </script>
 
 </body>
