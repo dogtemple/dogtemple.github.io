@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html>
-<body>
-  <h2>抽籤</h2>
-  <button onclick="draw()">開始抽籤</button>
-  <div id="result"></div>
-
 <script>
-const fortunes = [
-  {id:1, poem:"上上籤", meaning:"大吉"},
-  {id:2, poem:"中平籤", meaning:"平穩"},
-  {id:3, poem:"下下籤", meaning:"需謹慎"},
-  // 👉 自行補到49支
-];
-
 function draw(){
-  const r = Math.floor(Math.random()*fortunes.length);
-  const f = fortunes[r];
+  const num = Math.floor(Math.random() * 49) + 1;
 
-  document.getElementById("result").innerHTML =
-    `<h3>第 ${f.id} 籤</h3><p>${f.poem}</p><p>${f.meaning}</p>`;
+  document.getElementById("result").innerHTML = `
+    <h2>第 ${num} 籤</h2>
+    <img src="images/${num}.jpg" width="300">
+  `;
 }
 </script>
-</body>
-</html>
