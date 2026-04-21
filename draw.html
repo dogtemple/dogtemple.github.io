@@ -9,11 +9,42 @@
 
 <h1>🎋 抽籤</h1>
 
+<!-- 👉 登入先放上面（使用體驗好） -->
+<button onclick="login()">Google登入</button><br><br>
+
 <button onclick="draw()">開始抽籤</button>
 
 <div id="result"></div>
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
 <script>
+// 🔥 Firebase設定
+const firebaseConfig = {
+  apiKey: "AIzaSyAJ_Ur8xuEk-8KGg2TbcadatJmvY8lp4U",
+  authDomain: "fuxian-temple.firebaseapp.com",
+  projectId: "fuxian-temple",
+  storageBucket: "fuxian-temple.appspot.com",
+  messagingSenderId: "853469738414",
+  appId: "1:853469738414:web:cf42ede04baeeb8bb9043f"
+};
+
+// 初始化
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// ✅ 登入
+function login(){
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider);
+}
+
+// ✅ 抽籤（先保留簡單版）
 function draw(){
   const num = Math.floor(Math.random() * 49) + 1;
 
